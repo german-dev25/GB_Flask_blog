@@ -65,6 +65,7 @@
 
                     <!-- Latest Comments -->
                     <div class="latest-comments-widget">
+                        {% if current_user.is_authenticated %}
                         <h4>Latest Comments</h4>
                         {% for comment in last_comments[-3:] %}
                         <div class="single-comments d-flex">
@@ -91,6 +92,7 @@
                                 </a>
                                 <hr>
                             </div>
+                            {% endif %}
                         </div>
                         {% endfor %}
 
