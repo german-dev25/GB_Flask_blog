@@ -49,7 +49,7 @@ PyMsgBox==1.0.8
 PyMySQL==1.0.2
 pyobjc==8.5
 pyobjc-framework-Accounts==8.5
-pyobjc-framework-AddressBook==8.5
+pyobjc-framework-AddressBook
 pyobjc-framework-AdServices==8.5
 pyobjc-framework-AdSupport==8.5
 pyobjc-framework-AppleScriptKit==8.5
