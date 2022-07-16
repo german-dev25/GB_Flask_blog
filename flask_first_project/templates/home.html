@@ -63,6 +63,7 @@
                         {% endfor %}
                     </div>
 
+                    {% if current_user.is_authenticated %}
                     <!-- Latest Comments -->
                     <div class="latest-comments-widget">
                         <h4>Latest Comments</h4>
@@ -92,6 +93,7 @@
                                 <hr>
                             </div>
                         </div>
+                        {% endif %}
                         {% endfor %}
 
                     </div>
