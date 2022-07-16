@@ -67,7 +67,7 @@
                     <!-- Latest Comments -->
                     <div class="latest-comments-widget">
                         <h4>Latest Comments</h4>
-                        {% for comment in last_comments[-3:] %}
+                        {% for comment in last_comments[-3:] %} 
                         <div class="single-comments d-flex">
                             <div class="comments-text">
                                 <a href="{{ url_for('users.user_posts', username=comment.username) }}">
