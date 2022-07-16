@@ -68,33 +68,33 @@
                         {% if current_user.is_authenticated %}
                         <h4>Latest Comments</h4>
                         {% for comment in last_comments[-3:] %}
-                        <div class="single-comments d-flex">
-                            <div class="comments-text">
-                                <a href="{{ url_for('users.user_posts', username=comment.username) }}">
-                                    <img
-                                            src="{{url_for('static', filename='profile_pics/' + comment.author.image_file) }}"
-                                            class="rounded-circle article-img"
-                                            style="margin-right: 5px; width: 50px; height: 50px">
-                                </a>
-                                <a href="{{ url_for('users.user_posts', username=comment.username) }}">
-                                    <span>{{ comment.username }}</span>
-                                </a>
-                                <a href="{{ url_for('posts.post', post_id=comment.post_id) }}">
-                                    <b>
-                                        <p>Сказал(-а):</b>
-                                        "{{ comment.body }}"
-                                    </p>
-                                    <p>
-                                        <b>К посту:</b>
-                                        "{{ comment.post.content
-                                        |truncate(length=25, killwords=True, end='...') }}"
-                                    </p>
-                                </a>
-                                <hr>
-                            </div>
-                            {% endif %}
+                            <div class="single-comments d-flex">
+                                <div class="comments-text">
+                                    <a href="{{ url_for('users.user_posts', username=comment.username) }}">
+                                        <img
+                                                src="{{url_for('static', filename='profile_pics/' + comment.author.image_file) }}"
+                                                class="rounded-circle article-img"
+                                                style="margin-right: 5px; width: 50px; height: 50px">
+                                    </a>
+                                    <a href="{{ url_for('users.user_posts', username=comment.username) }}">
+                                        <span>{{ comment.username }}</span>
+                                    </a>
+                                    <a href="{{ url_for('posts.post', post_id=comment.post_id) }}">
+                                        <b>
+                                            <p>Сказал(-а):</b>
+                                            "{{ comment.body }}"
+                                        </p>
+                                        <p>
+                                            <b>К посту:</b>
+                                            "{{ comment.post.content
+                                            |truncate(length=25, killwords=True, end='...') }}"
+                                        </p>
+                                    </a>
+                                    <hr>
+                                </div>
                         </div>
                         {% endfor %}
+                            {% endif %}
 
                     </div>
                 </div>
