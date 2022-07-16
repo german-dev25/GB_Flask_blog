@@ -43,7 +43,6 @@ pipenv==2018.11.26
 platformdirs==2.5.2
 psycopg2-binary==2.9.3
 PyAutoGUI==0.9.50
-PyBluez==0.30
 pycparser==2.20
 PyGetWindow==0.0.8
 PyMsgBox==1.0.8
