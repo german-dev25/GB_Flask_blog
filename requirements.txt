@@ -48,7 +48,6 @@ PyGetWindow==0.0.8
 PyMsgBox==1.0.8
 PyMySQL==1.0.2
 pyobjc==8.5
-pyobjc-framework-Accessibility==8.5
 pyobjc-framework-Accounts==8.5
 pyobjc-framework-AddressBook==8.5
 pyobjc-framework-AdServices==8.5
@@ -127,7 +126,6 @@ pyobjc-framework-LocalAuthentication==8.5
 pyobjc-framework-LocalAuthenticationEmbeddedUI==8.5
 pyobjc-framework-MailKit==8.5
 pyobjc-framework-MapKit==8.5
-pyobjc-framework-MediaAccessibility==8.5
 pyobjc-framework-MediaLibrary==8.5
 pyobjc-framework-MediaPlayer==8.5
 pyobjc-framework-MediaToolbox==8.5
