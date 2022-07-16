@@ -1,0 +1,43 @@
+<div class="col-12 col-lg-{{ legend }}">
+    <div class="single-blog-post style-3">
+        <div class="post-thumb">
+            <a href="{{ url_for('posts.post', post_id=post.id) }}"><img src="{{ url_for('static', filename='posts_pics/' + post.image_file) }}"}}
+                             style="margin-right: 5px; width: 350px; height: 260px" alt=""></a>
+        </div>
+        <!-- Post Data -->
+        <div class="post-data">
+            <a href="{{url_for('main.home_category', cat_id=post.category.id)}}" class="post-catagory"
+               style="background-color: #{{ post.category.color }}">
+                {{ post.category }}</a>
+            <a class="post-title" href="{{ url_for('posts.post', post_id=post.id) }}">
+                <h6>
+                    {{ post.title|truncate(length=19, killwords=False, end='...') }}
+                </h6>
+            </a>
+            <div class="post-meta">
+                <p class="post-author">Автор:
+                    <a href="{{ url_for('users.user_posts', username=post.author.username) }}"
+                       id="author" style="margin: 0 auto;">
+                        {{ post.author.username }}</a>
+                    <img class="rounded-circle article-img"
+                         style="margin-right: 5px; width: 30px; height: 30px"
+                         src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+                </p>
+                <p>{{ post.content|truncate(length=30, killwords=False, end='...', leeway=None) }}</p>
+                <div style="display: flex; justify-content: space-evenly">
+                    <div>
+                        {% if current_user.is_authenticated %}
+                        Всего комментариев: {{ post.comments.count() }}
+                        <hr>
+                    </div>
+                    <div>
+                        {% include 'includes/likes.html' %}
+                        {% endif %}
+                        <hr>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

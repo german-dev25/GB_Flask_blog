@@ -1,0 +1,89 @@
+<header class="header-area">
+    <div class="top-header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="top-header-content d-flex align-items-center justify-content-between">
+
+                        <!-- Три последние новости с сайта -->
+                        <div class="top-breaking-news-area" style="display: flex; justify-content: flex-start; ">
+                            <div style="width: 150px; text-align: center; vertical-align: middle;">
+                                <span>LAST 3 News</span>
+                            </div>
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    {% for post in some_last_post[-3:] %}
+                                    <li>
+                                        <a href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Нерабочие кнопки соцсетей -->
+                        <div class="top-social-info-area">
+                            <i class="fa fa-google-plus" aria-hidden="true"></i>
+                            <i class="fa fa-pinterest" aria-hidden="true"></i>
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <i class="fa fa-vk" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="viral-news-main-menu" id="stickyMenu">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <nav class="classy-navbar justify-content-between" id="viralnewsNav">
+
+                    <!-- Logo -->
+                    <a class="nav-brand" href={{url_for('main.home')}}>
+                        <img src={{url_for('static', filename='img/core-img/logo.png' )}} alt="Logo">
+                    </a>
+
+                    <div class="classy-menu">
+                        <div class="classynav">
+                            <!-- Меню категорий -->
+                            <ul>
+                                <li>
+                                    <a href="{{ url_for('main.home') }}">All Posts</a>
+                                </li>
+                                {% for category in categories %}
+                                <li>
+                                    <a href="{{ url_for('main.home_category', cat_id=category.id) }}">
+                                        {{ category.category }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+
+                            <!-- Меню пользователя -->
+                            {% if current_user.is_authenticated %}
+                                <a href="{{ url_for('users.user_posts', username=current_user.username) }}"
+                                   class="btn">
+                                    My Posts
+                                </a>
+                                <a href="{{ url_for('posts.new_post') }}" class="btn">
+                                    Add Post
+                                </a>
+                                <a href="{{url_for('users.account')}}" class="btn">
+                                    Hello, {{ current_user.username }}
+                                </a>
+                                <a href="{{url_for('users.logout')}}" class="btn">
+                                    Log Out
+                                </a>
+                            {% else %}
+                                <a href="{{url_for('users.register')}}" class="btn">Register</a>
+                                <a href="{{url_for('users.login')}}" class="btn">Login</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

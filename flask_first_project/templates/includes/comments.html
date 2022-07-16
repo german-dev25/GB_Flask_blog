@@ -1,0 +1,41 @@
+{% if current_user.is_authenticated %}
+    <!-- Оставить комментарий -->
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+                {% for field in form
+                if field.name != 'csrf_token'
+                and field.name != 'submit' %}
+                <div class="form-group">
+                    {{ field.label(class="form-control-label") }}
+                    {{ field(class="form-control form-control-lg") }}
+                    {% for error in field.errors %}
+                    <div class="form-control form-control-lg is-invalid invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+    </form>
+
+    <!-- Показ комментариев -->
+    {% if post.comments.count() > 0 %}
+    <h4>Комментарии пользователей:</h4>
+    {% for comment in post.comments %}
+    <div class="card" style="margin-bottom: 20px;">
+        <div class="card-body">
+            <h6 class="card-title">Текст: {{ comment.body }}</h6>
+            <hr>
+            <small>Опубликовано: {{ comment.add_time.strftime('%A, %d %B %Y %I:%M %p') }}</small>
+            <br>
+            <p class="card-text">от Пользователя: {{ comment.username }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+{% endif %}
+

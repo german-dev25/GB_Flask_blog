@@ -1,0 +1,14 @@
+{% if current_user.is_authenticated %}
+    {% if current_user.has_liked_post(post) %}
+    <a href="{{ url_for('posts.like_action', post_id=post.id, action='unlike') }}">
+        <img src="/static/img/core-img/postlike.png" width="20px">
+        {{ post.likes.count() }}
+    </a>
+    {% elif not current_user.has_liked_post(post) %}
+    <a href="{{ url_for('posts.like_action', post_id=post.id, action='like') }}"
+       width="25px">
+        <img src="/static/img/core-img/postunlike.png" width="20px">
+        {{ post.likes.count() }}
+    </a>
+    {% endif %}
+{% endif %}

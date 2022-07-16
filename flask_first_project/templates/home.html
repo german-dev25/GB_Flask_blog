@@ -1,0 +1,104 @@
+<!-- Завершено -->
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="viral-story-blog-post section-padding-0-50">
+    <div class="container">
+        <div class="row">
+            <!-- Blog Posts Area -->
+            <div class="col-12 col-lg-8">
+                <div class="row">
+                    {% include "new-posts.html" %}
+                </div>
+                {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                {% if page_num %}
+                {% if posts.page == page_num %}
+                <a class="btn btn-success mb-4" href="{{ url_for('main.home', page=page_num) }}">
+                    {{ page_num }}
+                </a>
+                {% else %}
+                <a class="btn btn-outline-success mb-4" href="{{ url_for('main.home', page=page_num) }}">
+                    {{ page_num }}
+                </a>
+                {% endif %}
+                {% else %}
+                ...
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Sidebar Area -->
+            <div class="col-12 col-lg-4">
+                <div class="sidebar-area">
+
+                    <!-- Trending Articles Widget -->
+                    <div class="treading-articles-widget mb-70">
+                        <h4>Trending Articles</h4>
+
+                        {% for post in some_last_post[-5:] %}
+                        <div class="single-blog-post style-4">
+                            <div class="post-thumb">
+                                <a href="{{ url_for('posts.post', post_id=post.id) }}">
+                                    <img src="{{ url_for('static', filename='posts_pics/' + post.image_file) }}" alt=""
+                                         width="400px">
+                                </a>
+                                <span class="serial-number">0{{ loop.index }}.</span>
+
+                            </div>
+                            <div class="post-data">
+                                <a href="{{ url_for('posts.post', post_id=post.id) }}" class="post-title">
+                                    <h6>{{ post.title }}</h6>
+                                </a>
+                                <div class="post-meta">
+                                    <p class="post-author">Автор:
+                                        <a href="{{ url_for('users.user_posts', username=post.author.username) }}">
+                                            {{ post.author.username }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Latest Comments -->
+                    <div class="latest-comments-widget">
+                        <h4>Latest Comments</h4>
+                        {% for comment in last_comments[-3:] %}
+                        <div class="single-comments d-flex">
+                            <div class="comments-text">
+                                <a href="{{ url_for('users.user_posts', username=comment.username) }}">
+                                    <img
+                                            src="{{url_for('static', filename='profile_pics/' + comment.author.image_file) }}"
+                                            class="rounded-circle article-img"
+                                            style="margin-right: 5px; width: 50px; height: 50px">
+                                </a>
+                                <a href="{{ url_for('users.user_posts', username=comment.username) }}">
+                                    <span>{{ comment.username }}</span>
+                                </a>
+                                <a href="{{ url_for('posts.post', post_id=comment.post_id) }}">
+                                    <b>
+                                        <p>Сказал(-а):</b>
+                                        "{{ comment.body }}"
+                                    </p>
+                                    <p>
+                                        <b>К посту:</b>
+                                        "{{ comment.post.content
+                                        |truncate(length=25, killwords=True, end='...') }}"
+                                    </p>
+                                </a>
+                                <hr>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
